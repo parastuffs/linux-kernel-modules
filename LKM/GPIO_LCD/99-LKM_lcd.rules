@@ -1,0 +1,1 @@
+KERNEL=="LKM_lcd", SUBSYSTEM=="MyModuleClass", MODE="0666"

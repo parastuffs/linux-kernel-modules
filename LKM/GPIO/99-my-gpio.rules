@@ -1,0 +1,1 @@
+KERNEL=="LKM_gpio", SUBSYSTEM=="MyModuleClass", MODE="0666"
