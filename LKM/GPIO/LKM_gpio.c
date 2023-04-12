@@ -116,9 +116,7 @@ static int __init ModuleInit(void) {
 	}
 	printk("LKM_gpio: Device number major: %d, minor: %d registered\n", my_device_number>>20, my_device_number&0xfffff);
 
-	/* Create device class */gpio_set_value(GPIO_LED, 0); /* Set the GPIO value to 0 before freeing it. */
-	gpio_unexport(GPIO_LED);
-	gpio_free(GPIO_LED);
+	/* Create device class */
 	if ( (my_class = class_create(THIS_MODULE, DRIVER_CLASS)) == NULL) {
 		printk("Device class can't be created\n");
 		goto ClassError;
