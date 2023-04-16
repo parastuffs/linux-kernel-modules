@@ -1,1 +1,1 @@
-KERNEL=="dummydriver", SUBSYSTEM=="MyModuleClass", MODE="0666"
+KERNEL=="mcp9801", SUBSYSTEM=="MCP9801Class", MODE="0666"
