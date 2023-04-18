@@ -1,0 +1,4 @@
+- Insert the module
+- Check `dmesg`
+- Reset the address counter with `$ i2ctransfer 2 w2@0x50 0x0 0x0`
+- Dump the memory to check the module actions `i2cdump -y 2 0x50 c`
