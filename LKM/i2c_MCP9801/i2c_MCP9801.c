@@ -106,7 +106,7 @@ static int __init ModuleInit(void) {
 		printk("Device number could not be allocated\n");
 		return -1;
 	}
-	printk("MCP9801: Device number major: %d, minor: %d registered\n", my_device_number>>20, my_device_number&0xfffff);
+	printk("MCP9801: Device number major: %d, minor: %d registered\n", MAJOR(my_device_number), MINOR(my_device_number));
 
 	/* Create device class */
 	if ( (my_class = class_create(THIS_MODULE, DRIVER_CLASS)) == NULL) {

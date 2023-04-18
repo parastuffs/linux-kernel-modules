@@ -25,17 +25,17 @@ static struct cdev my_device;
    but unsigned char uses less space.
 */
 unsigned char gpios[] = {
-	33, /* Register Select */
-	62, /* R/W */
-	63, /* Enable */
-	27, /* D0 */
-	46, /* D1 */
-	23, /* D2 */
-	44, /* D3 */
-	69, /* D4 */
-	67, /* D5 */
-	34, /* D6 */
-	39 /* D7 */
+	27, /* Register Select */
+	65, /* R/W */
+	47, /* Enable */
+	46, /* D0 */
+	23, /* D1 */
+	26, /* D2 */
+	45, /* D3 */
+	44, /* D4 */
+	69, /* D5 */
+	68, /* D6 */
+	66 /* D7 */
 };
 
 /* Buffer for LCD, 16 characters per line */
@@ -57,10 +57,12 @@ void lcd_enable(void) {
 */
 void lcd_send_byte(uint8_t data) {
 	int i;
+	printk("LKM_lcd: sending byte '0x%x'\n", data);
 	for(i=0; i<8; i++) {
 		/* Data pins start at index 3 of gpios[] */
 		/* We send one bit of the byte to each pin. */
 		gpio_set_value(gpios[3+i], ( data & (1<<i) ) >> i);
+		printk("On pin [%d]: %d\n", gpios[3+i], ( data & (1<<i) ) >> i);
 	}
 	/* Latch the screen */
 	lcd_enable();
@@ -70,6 +72,7 @@ void lcd_send_byte(uint8_t data) {
 /* Send an instruction to the LCD */
 void lcd_instruction(uint8_t data) {
 	/* First set it to 'instruction' mode */
+	printk("LKM_lcd: instruction mode\n");
 	gpio_set_value(gpios[0], 0);
 	lcd_send_byte(data);
 }
@@ -77,6 +80,7 @@ void lcd_instruction(uint8_t data) {
 /* Send data to the LCD */
 void lcd_data(uint8_t data) {
 	/* Set to 'data' mode */
+	printk("LKM_lcd: data mode\n");
 	gpio_set_value(gpios[0], 1);
 	lcd_send_byte(data);
 }
@@ -132,7 +136,7 @@ static int __init ModuleInit(void) {
 		printk("Device number could not be allocated\n");
 		return -1;
 	}
-	printk("LKM_lcd: Device number major: %d, minor: %d registered\n", my_device_number>>20, my_device_number&0xfffff);
+	printk("LKM_lcd: Device number major: %d, minor: %d registered\n", MAJOR(my_device_number), MINOR(my_device_number));
 
 	/* Create device class */
 	if ( (my_class = class_create(THIS_MODULE, DRIVER_CLASS)) == NULL) {
@@ -189,6 +193,8 @@ static int __init ModuleInit(void) {
 	lcd_instruction(0xF);
 	/* Clear display */
 	lcd_instruction(0x1);
+	/* Write '7' */
+	lcd_data('7');
 
 
 	return 0;
