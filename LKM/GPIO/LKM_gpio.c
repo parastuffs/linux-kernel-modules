@@ -13,7 +13,7 @@
 #define DRIVER_NAME "LKM_gpio"
 #define DRIVER_CLASS "MyModuleClass"
 
-#define GPIO_BUTTON 117
+#define GPIO_BUTTON 115
 #define GPIO_LED 49
 
 /* Meta information */
