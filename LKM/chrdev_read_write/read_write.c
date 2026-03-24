@@ -18,7 +18,7 @@ MODULE_DESCRIPTION("Read an write on a device.");
 
 /* Buffer for data */
 static char buffer[255];
-static int buffer_pointer;
+static unsigned int buffer_pointer;
 
 /* Vars for device and device class */
 static dev_t my_device_number;
@@ -91,7 +91,7 @@ static int __init ModuleInit(void) {
 	printk("read-write: Device number major: %d, minor: %d registered\n", MAJOR(my_device_number), MINOR(my_device_number));
 
 	/* Create device class */
-	if ( (my_class = class_create(THIS_MODULE, DRIVER_CLASS)) == NULL) {
+	if ( (my_class = class_create(DRIVER_CLASS)) == NULL) {
 		printk("Device class can't be created\n");
 		goto ClassError;
 	}
@@ -110,6 +110,8 @@ static int __init ModuleInit(void) {
 		printk("Can't register device to kernel\n");
 		goto AddError;
 	}
+
+	buffer_pointer = 0;
 
 	return 0;
 
