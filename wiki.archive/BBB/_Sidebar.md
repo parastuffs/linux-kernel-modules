@@ -1,0 +1,15 @@
+[LKM Wiki homepage](https://github.com/parastuffs/linux-kernel-modules/wiki)
+## Initial Setup
+  * [Install Linux](https://github.com/parastuffs/linux-kernel-modules/wiki/Linux-installation)
+  * [Communicate with the board](https://github.com/parastuffs/linux-kernel-modules/wiki/Board-communication)
+  * [Set up the cross-compilation toolchain](https://github.com/parastuffs/linux-kernel-modules/wiki/Cross-compilation-toolchain)
+## Kernel modules
+  * [Hello World -- Start here](https://github.com/parastuffs/linux-kernel-modules/wiki/Your-first-embedded-LKM)
+  * [Character Device Driver](https://github.com/parastuffs/linux-kernel-modules/wiki/Character-Device-Driver)
+  * [Control GPIOs](https://github.com/parastuffs/linux-kernel-modules/wiki/Control-GPIOs)
+  * [GPIO Interrupt](https://github.com/parastuffs/linux-kernel-modules/wiki/GPIO-Interrupt)
+  * [LCD Screen](https://github.com/parastuffs/linux-kernel-modules/wiki/LCD-Screen)
+  * [I2C sensor](https://github.com/parastuffs/linux-kernel-modules/wiki/I2C-Temperature-Sensor)
+  * [I2C EEPROM](https://github.com/parastuffs/linux-kernel-modules/wiki/I2C-EEPROM)
+  * [I2C Crypto Core](https://github.com/parastuffs/linux-kernel-modules/wiki/I2C-Crypto-Core)
+## **OLD** [BeagleBoard Black procedure]()

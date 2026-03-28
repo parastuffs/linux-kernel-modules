@@ -1,0 +1,11 @@
+- [System Reference Manual](https://cdn.sparkfun.com/datasheets/Dev/Beagle/BBB_SRM_C.pdf)
+- https://docs.beagleboard.org/latest/boards/beaglebone/black/index.html
+- https://beagleboard.org/linux
+- https://github.com/beagleboard/beaglebone-black/wiki
+- https://elinux.org/BeagleBoardDebian Guide on how to install official images on SD or emmc.
+- https://bootlin.com/doc/training/buildroot/buildroot-labs.pdf Bootlin training about building a custom Linux image.
+- https://github.com/beagleboard Github repo for beagleboards.
+- https://docs.beagleboard.org/latest/boards/beaglebone/black/ch06.html#default-boot-options Technical doc.
+- https://embear.ch/blog/compiling-a-kernel-module Guide on how to cross-compile a kernel module.
+- [Full kernel 4.19.94 source on Bootlin](https://elixir.bootlin.com/linux/v4.19.94/source)
+- [I2C addresses database](https://i2cdevices.org/addresses)
