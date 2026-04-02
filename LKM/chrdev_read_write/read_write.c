@@ -18,7 +18,7 @@ MODULE_DESCRIPTION("Read an write on a device.");
 
 /* Buffer for data */
 static char buffer[255];
-static unsigned int buffer_pointer;
+static size_t buffer_pointer;
 
 /* Vars for device and device class */
 static dev_t my_device_number;
@@ -27,7 +27,7 @@ static struct cdev my_device;
 
 /* Read callback */
 static ssize_t driver_read(struct file *File, char *user_buffer, size_t count, loff_t *offs) {
-	int to_copy, not_copied, delta;
+	size_t to_copy, not_copied, delta;
 
 	/* Amount of data to copy */
 	to_copy = min(count, buffer_pointer);
@@ -43,7 +43,7 @@ static ssize_t driver_read(struct file *File, char *user_buffer, size_t count, l
 
 /* Write callback */
 static ssize_t driver_write(struct file *File, const char *user_buffer, size_t count, loff_t *offs) {
-	int to_copy, not_copied, delta;
+	size_t to_copy, not_copied, delta;
 
 	/* Amount of data to copy */
 	to_copy = min(count, sizeof(buffer));
