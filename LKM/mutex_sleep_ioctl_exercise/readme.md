@@ -22,16 +22,16 @@ If the driver crashes inside the kernel at some point, you can try to forcefully
 
 
 # Checklist of bugs to fix in `buggy_device.c`
-[] In `my_open()`, we don't check the return value of `mutex_trylock()`.
-[] In `my_release()`, we release the mutex using `mutex_unlock()`, without checking if the lock was even held.
-[] In `my_read()`, we go to sleep using `wait_event_interruptible()`, but we are holding a lock!
-[] We acquire the lock with an uninterruptible function, which can lead to hanging.
-[] We don't check the return value of the interruptible sleep `wait_event_interruptible()`. Since it's interruptible, we could get out of sleep through an interruption, which is not the expected wake up condition. A good practice is to check the return value in an `if` statement, and we exit witht the return `-EINTR` if we detected an interruption.
-[] In `my_read()`, we don't check the boundaries before reading the buffer, risk of overflow.
-[] In `my_read()`, we always return `0` instead of the amount of bytes copied to the user buffer.
-[] In `my_write()`, we don't use locking at all.
-[] In `my_write()`, we wake sleeping processes without synchronisation. Since the condition change (`data_size` update) is not protected by a lock *and* the `wait_event_interruptible()` is behind a condition check, we might miss the wake up signal, sleeping forever.
-[] In `my_ioctl()`, there is no protection on `data_size` update.
-[] In `my_ioctl()`, there is an unsafe access to userspace memory: `val = *(int *)arg`. We should instead use `copy_from_user(&val, (int __user *)arg, sizeof(int))`.
-[] In `my_ioctl()`, the mode change is not protected by a lock.
-[] In `my_ioctl()`, we return the wrong error code for the default case.
+- [ ] In `my_open()`, we don't check the return value of `mutex_trylock()`.
+- [ ] In `my_release()`, we release the mutex using `mutex_unlock()`, without checking if the lock was even held.
+- [ ] In `my_read()`, we go to sleep using `wait_event_interruptible()`, but we are holding a lock!
+- [ ] We acquire the lock with an uninterruptible function, which can lead to hanging.
+- [ ] We don't check the return value of the interruptible sleep `wait_event_interruptible()`. Since it's interruptible, we could get out of sleep through an interruption, which is not the expected wake up condition. A good practice is to check the return value in an `if` statement, and we exit witht the return `-EINTR` if we detected an interruption.
+- [ ] In `my_read()`, we don't check the boundaries before reading the buffer, risk of overflow.
+- [ ] In `my_read()`, we always return `0` instead of the amount of bytes copied to the user buffer.
+- [ ] In `my_write()`, we don't use locking at all.
+- [ ] In `my_write()`, we wake sleeping processes without synchronisation. Since the condition change (`data_size` update) is not protected by a lock *and* the `wait_event_interruptible()` is behind a condition check, we might miss the wake up signal, sleeping forever.
+- [ ] In `my_ioctl()`, there is no protection on `data_size` update.
+- [ ] In `my_ioctl()`, there is an unsafe access to userspace memory: `val = *(int *)arg`. We should instead use `copy_from_user(&val, (int __user *)arg, sizeof(int))`.
+- [ ] In `my_ioctl()`, the mode change is not protected by a lock.
+- [ ] In `my_ioctl()`, we return the wrong error code for the default case.
