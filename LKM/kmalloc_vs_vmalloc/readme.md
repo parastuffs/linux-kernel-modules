@@ -11,7 +11,7 @@ Play around with the module parameters to observe their effect and grasp how mem
 
 # Usage
 ```sh
-sudo insmod sudo insmod kmalloc_vs_vmalloc.ko
+sudo insmod kmalloc_vs_vmalloc.ko
 ```
 
 Check the kernel log:
